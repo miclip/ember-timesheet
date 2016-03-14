@@ -6,6 +6,17 @@ module.exports = function(environment) {
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
+    
+    firebase: 'https://timesheet-poc.firebaseio.com/',
+    torii: {
+      sessionServiceName: 'session'
+    },
+    contentSecurityPolicy: {
+      'style-src': '\'self\' fonts.googleapis.com',
+      'font-src': '\'self\' fonts.gstatic.com',
+      'img-src': '\'self\' *.gravatar.com data:image',
+      'connect-src': '\'self\' wss://*.firebaseio.com https://auth.firebase.com'
+    },
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build

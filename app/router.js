@@ -13,7 +13,7 @@ Router.map(function() {
             this.route('password');
             this.route('manage');
             this.route('delete');
-        })
+        });
 });
 
 export default Router;

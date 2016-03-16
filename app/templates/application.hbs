@@ -1,3 +1,32 @@
-<h2 id="title">Welcome to Ember</h2>
+<header>
+   <h1>
+    {{#link-to "index"}}<strong>Time</strong>Sheet{{/link-to}}
+  </h1>
+  <nav>
+  	{{#unless session.currentUser}}
+      {{#link-to "register"}}Register{{/link-to}}     
+    {{/unless}}
+    {{#if session.currentUser}}
+   
+       {{#link-to "account.manage"}}Account{{/link-to}}
+       <a class="ember-view" href="" {{action 'signOut'}}>Logout</a>
+        {{gravatar-image email=session.currentUser.email 
+          defaultImage='identicon'
+          class='img-circle img-responsive'
+          size=60}}
+    {{else}}
+      {{#link-to "login"}}Login{{/link-to}}
+    {{/if}}
+  </nav>
+</header>
+<section class="main-content ">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <br/>
+        {{outlet}}
+      </div>      
+    </div>
+  </div>
+</section>
 
-{{outlet}}

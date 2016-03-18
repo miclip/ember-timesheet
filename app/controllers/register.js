@@ -5,6 +5,7 @@ import moment from 'moment';
 
 export default Ember.Controller.extend(EmberValidations,{
 hasValidationErrors: false,
+contentTimezones: null,
 validationModel: Ember.computed.alias('model'),
 validations: {
     'validationModel.email': {
@@ -49,8 +50,7 @@ actions:{
                         {
                              id:userData.uid, 
                              timezone:'America/New_York',
-                             email:email,
-                             createdDate : moment(new Date()).utc()
+                             email:email
                             });
         				newUser.save();
       		});

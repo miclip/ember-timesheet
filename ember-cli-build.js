@@ -6,8 +6,12 @@ var mergeTrees = require('broccoli-merge-trees');
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
-    // Add options here
-  });
+     'ember-cli-bootstrap-switch': {
+    "importBootstrapCSS": false,
+    "importBootstrapJS": false,
+    "importBootstrapSwitchCSS": true,
+    "importBootstrapSwitchJS": true
+  }});
 
   app.import(app.bowerDirectory + '/tether/dist/js/tether.js');
   app.import(app.bowerDirectory + '/bootstrap/dist/js/bootstrap.js');

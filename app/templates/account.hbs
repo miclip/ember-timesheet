@@ -1,0 +1,39 @@
+<div class="container ">
+ <div class="row">
+   <div class="col-md-12 main">
+<div class="container">
+<div class="row">
+		<div class="col-md-12">
+			<br/>
+		</div>
+</div>
+
+<div class="row row-bottom">
+	<div class="col-md-2">
+		{{gravatar-image email=session.currentUser.email 
+				  defaultImage='identicon'
+				  class='img-fluid img-rounded'
+				  size=150}}
+	</div>
+		<div class="col-md-10">			
+			<ul class="nav nav-pills ">
+					<li class="nav-item">
+						{{#link-to "account.manage" class='nav-link'}}Manage Account{{/link-to}}
+					</li>
+					<li class="nav-item">
+						{{#link-to "account.password" class='nav-link'}}Change Password{{/link-to}}
+					</li>
+					<li class="nav-item">
+						{{#link-to "account.delete" class='nav-link'}}Delete Account{{/link-to}}
+					</li>
+			</ul>
+		</div>		
+	</div>
+	<hr>
+	
+{{outlet}}
+</div>
+
+</div>
+</div>
+</div>

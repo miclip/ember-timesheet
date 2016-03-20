@@ -40,6 +40,11 @@ actions:{
 							model.set('passwordConfirmation', null);
 							model.save();
 							self.set('modelSuccess', true);
+              self.notifications.addNotification({
+                            message: 'Account saved',
+                            type: 'success',
+                            autoClear: true,
+                        });
 					} else {
 						Ember.RSVP.Promise.reject(err);
 						switch (err.code) {

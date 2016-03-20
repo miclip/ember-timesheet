@@ -38,6 +38,11 @@ actions:{
 					if(!err){
 						Ember.RSVP.Promise.resolve();
 						self.set('modelSuccess', true);
+            self.notifications.addNotification({
+                            message: 'Password Changed.',
+                            type: 'success',
+                            autoClear: true,
+                        });
 					} else {
 						Ember.RSVP.Promise.reject(err);
 						switch (err.code) {

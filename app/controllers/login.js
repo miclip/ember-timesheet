@@ -22,40 +22,39 @@ actions:{
 		var self = this;
  		self.setProperties({
     	isProcessing: true,
-    });
-	 	var email = model.get('email');
-	  console.log("email:"+email);
-	  var password = model.get('password');
-	  self.validate().then(function(){
-	  	self.get("session").open("firebase", { 
-		  	provider: "password", 
-		  	email:email, 
-		  	password:password, 
-		  	session: "sessionOnly"}).then(function() {
-		  		model.destroyRecord();
-		  		self.transitionTo("index");
-    }).catch(function(err){
-			switch (err.code) {
-				case "INVALID_EMAIL":
-					model.get('errors').add('email', 'User not found');
-				break;
-				case "INVALID_USER":
-					model.get('errors').add('email', 'No such user');
-				break;
-				case "INVALID_PASSWORD":
-					model.get('errors').add('password', 'Password is incorrect');
-				break;
-				default:
-					model.get('errors').add('', 'Unexpected error:'+ err.code);
-					console.log("Error creating user:", err);
-			} 				
+        });
+	    var email = model.get('email');
+	    console.log("email:"+email);
+	    var password = model.get('password');
+	    self.validate().then(function(){
+	  	    self.get("session").open("firebase", { 
+                provider: "password", 
+                email:email, 
+                password:password, 
+                session: "sessionOnly"}).then(function() {
+                    self.transitionToRoute("index");
+            }).catch(function(err){
+                switch (err.code) {
+                    case "INVALID_EMAIL":
+                        model.get('errors').add('email', 'User not found');
+                    break;
+                    case "INVALID_USER":
+                        model.get('errors').add('email', 'No such user');
+                    break;
+                    case "INVALID_PASSWORD":
+                        model.get('errors').add('password', 'Password is incorrect');
+                    break;
+                    default:
+                        model.get('errors').add('', 'Unexpected error:'+ err.code);
+                        console.log("Error creating user:", err);
+                } 				
 
-    });
+        });
 		  }).catch(function(){
 		  	self.set('hasValidationErrors',true);
 		  }).finally(function(){
     		self.set('isProcessing',false);
-    });
+        });
 	}
 }	
 });

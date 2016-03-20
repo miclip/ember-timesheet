@@ -5,7 +5,6 @@ import moment from 'moment';
 
 export default Ember.Controller.extend(EmberValidations,{
 hasValidationErrors: false,
-contentTimezones: null,
 validationModel: Ember.computed.alias('model'),
 validations: {
     'validationModel.email': {
@@ -49,12 +48,18 @@ actions:{
         				var newUser = self.get('store').createRecord('user', 
                         {
                              id:userData.uid, 
-                             timezone:'America/New_York',
+                             timezone:moment.tz.guess(),
+                             createdAt: new Date(),
                              email:email
                             });
         				newUser.save();
       		});
-				  self.set('registerSuccess', true);
+              self.set('registerSuccess', true);
+              self.notifications.addNotification({
+                            message: 'Registration sucessfull',
+                            type: 'success',
+                            autoClear: true,
+                        });
 			} else {
 				Ember.RSVP.Promise.reject(err);
 				switch (err.code) {
